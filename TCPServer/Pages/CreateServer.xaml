@@ -7,7 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		
-    </Grid>
+	<Page.Resources>
+		<Style x:Key="FormLabel" TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,0,0,0"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+		</Style>
+		<Style x:Key="FormTextBox" TargetType="TextBox">
+			<Setter Property="Margin" Value="0,0,10,0"/>
+			<Setter Property="Padding" Value="0,0,0,0"/>
+		</Style>
+	</Page.Resources>
+	
+	<RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+		<Grid x:Name="FormGrid" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="SubmitButton" RelativePanel.AlignLeftWith="SubmitButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="PortLabel" Style="{StaticResource FormLabel}" Text="Port:" Grid.Column="0" Grid.Row="0"/>
+			<TextBox x:Name="PortBox" Style="{StaticResource FormTextBox}" Grid.Column="1" Grid.Row="0" GotFocus="PortBox_GotFocus" LostFocus="PortBox_LostFocus"/>
+		</Grid>
+		<Button x:Name="SubmitButton" Content="Submit" RelativePanel.AlignBottomWithPanel="True"/>
+	</RelativePanel>
 </Page>

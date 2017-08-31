@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,9 +28,14 @@ namespace TCPServer.Pages
 			this.InitializeComponent();
 		}
 
-		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+		private void PortBox_GotFocus(object sender, RoutedEventArgs e)
 		{
+			PortLabel.Foreground = new SolidColorBrush(Colors.Red);
+		}
 
+		private void PortBox_LostFocus(object sender, RoutedEventArgs e)
+		{
+			PortLabel.Foreground = new SolidColorBrush(Colors.Black);
 		}
 	}
 }

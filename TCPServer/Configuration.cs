@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace TCPServer
 {
-	partial class MainPage : Page
+	partial class MainPage
 	{
 		public const string APP_TITLE = "TCP Server";
 

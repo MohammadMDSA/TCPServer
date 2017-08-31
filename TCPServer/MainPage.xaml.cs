@@ -35,6 +35,8 @@ namespace TCPServer
 		{
 			AppTitle.Text = APP_TITLE;
 			ScenarioListBox.ItemsSource = Scenarios;
+			ScenarioListBox.SelectedIndex = 0;
+			Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
 		}
 
 		private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -88,6 +90,19 @@ namespace TCPServer
 			{
 				StatusBorder.Visibility = Visibility.Collapsed;
 				StatusPanel.Visibility = Visibility.Collapsed;
+			}
+		}
+
+		private void ScenarioListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			NotifyUser(string.Empty, NotifyType.StatusMessage);
+
+			var scenarioList = sender as ListBox;
+			Scenario s = scenarioList.SelectedItem as Scenario;
+
+			if(s != null)
+			{
+				MainFrame.Navigate(s.PageType);
 			}
 		}
 	}
