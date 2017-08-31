@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,43 +23,79 @@ namespace TCPServer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+		static MainPage RootPage;
+
         public MainPage()
         {
             this.InitializeComponent();
+			RootPage = this;
         }
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			AppTitle.Text = APP_TITLE;
+			ScenarioListBox.ItemsSource = Scenarios;
+		}
 
+		private void ToggleButton_Click(object sender, RoutedEventArgs e)
+		{
+			SidePanel.IsPaneOpen = !SidePanel.IsPaneOpen;
+		}
+
+		private void SidePanel_PaneClosing(SplitView sender, SplitViewPaneClosingEventArgs args)
+		{
+			SidePanelTggle.IsChecked = false;
+		}
+
+		public Frame GetRootFrame()
+		{
+			return this.MainFrame;
+		}
+
+		public void NotifyUser(string message, NotifyType type)
+		{
+			if (Dispatcher.HasThreadAccess)
+			{
+				UpdateStatus(message, type);
+			}
+			else
+			{
+				var task = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => UpdateStatus(message, type));
+			}
+		}
+
+		private void UpdateStatus(string message, NotifyType type)
+		{
+			switch (type)
+			{
+				case NotifyType.StatusMessage:
+					StatusBorder.Background = new SolidColorBrush(Colors.Green);
+					break;
+				case NotifyType.ErrorMessage:
+					StatusBorder.Background = new SolidColorBrush(Colors.Red);
+					break;
+			}
+
+			StatusBlock.Text = message;
+
+			StatusBorder.Visibility = (StatusBlock.Text != string.Empty) ? Visibility.Visible : Visibility.Collapsed;
+			if(StatusBlock.Text != string.Empty)
+			{
+				StatusBorder.Visibility = Visibility.Visible;
+				StatusPanel.Visibility = Visibility.Visible;
+			}
+			else
+			{
+				StatusBorder.Visibility = Visibility.Collapsed;
+				StatusPanel.Visibility = Visibility.Collapsed;
+			}
 		}
 	}
 
-	public class ScenarioNameListConverter : IValueConverter
+	public enum NotifyType
 	{
-		public object Convert(object value, Type targetType, object parameter, string language)
-		{
-			var scenario = value as Scenario;
-			return scenario.Title;
-		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, string language)
-		{
-			return true;
-		}
+		StatusMessage,
+		ErrorMessage
 	}
 
-	public class ScenarioIconListConverter : IValueConverter
-	{
-		public object Convert(object value, Type targetType, object parameter, string language)
-		{
-			var scenario = value as Scenario;
-			return scenario.Icon;
-		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, string language)
-		{
-			return true;
-		}
-	}
 }
