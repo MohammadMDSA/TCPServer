@@ -23,6 +23,9 @@ namespace TCPClient.Pages
 	/// </summary>
 	public sealed partial class Setting : Page
 	{
+		public static string PortNumber { get; set; }
+		public static string ServerName { get; set; }
+
 		public Setting()
 		{
 			this.InitializeComponent();
@@ -30,12 +33,14 @@ namespace TCPClient.Pages
 
 		private void ConnectButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			PortNumber = PortNumberBox.Text;
+			ServerName = HostNameText.Text;
 		}
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			PortNumber = string.Empty;
+			ServerName = string.Empty;
 		}
 
 		private void HostNameText_GotFocus(object sender, RoutedEventArgs e)

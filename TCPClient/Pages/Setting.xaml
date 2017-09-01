@@ -20,7 +20,7 @@
 	</Page.Resources>
 
 	<RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-		<Grid x:Name="FormGrid" RelativePanel.AlignTopWithPanel="True" RelativePanel.Above="ConnectButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+		<Grid x:Name="FormGrid" RelativePanel.AlignTopWithPanel="True" RelativePanel.Above="SaveButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
@@ -35,7 +35,7 @@
 			<TextBlock x:Name="PortNumberLable" Style="{StaticResource FormLable}" Text="Host Port Number:" Grid.Column="0" Grid.Row="1"/>
 			<TextBox x:Name="PortNumberBox" Style="{StaticResource FormBox}" PlaceholderText="Host port number" Grid.Row="1" Grid.Column="1" LostFocus="PortNumberBox_LostFocus" GotFocus="PortNumberBox_GotFocus"/>
 		</Grid>
-		<Button x:Name="ConnectButton" Style="{StaticResource FormButtons}" Content="Connect" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="ConnectButton_Click"/>
-		<Button x:Name="ResetButton" Style="{StaticResource FormButtons}" Content="Reset" RelativePanel.RightOf="ConnectButton" RelativePanel.AlignBottomWithPanel="True" Click="ResetButton_Click"/>
+		<Button x:Name="SaveButton" Style="{StaticResource FormButtons}" Content="Save" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="ConnectButton_Click"/>
+		<Button x:Name="ResetButton" Style="{StaticResource FormButtons}" Content="Reset" RelativePanel.RightOf="SaveButton" RelativePanel.AlignBottomWithPanel="True" Click="ResetButton_Click"/>
 	</RelativePanel>
 </Page>

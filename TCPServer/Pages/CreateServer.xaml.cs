@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Networking.Sockets;
+using Windows.ApplicationModel.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -60,6 +61,7 @@ namespace TCPServer.Pages
 
 		private async void SocketListener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
 		{
+			CoreApplication.Exit();
 			var clientName = args.Socket.Information.LocalAddress.DisplayName;
 			MainPage.RootPage.NotifyUser("Recieved a connection from " + clientName + ".", NotifyType.StatusMessage);
 			Stream inStream = args.Socket.InputStream.AsStreamForRead();

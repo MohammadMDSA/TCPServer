@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TCPClient;
 using TCPClient.Pages;
 using TCPServer;
 
@@ -14,6 +15,7 @@ namespace TCPServer
 
 		private List<Scenario> Scenarios = new List<Scenario>()
 		{
+			new Scenario() {PageType = typeof(MessagePage), Icon="\uE119", Title="Message"},
 			new Scenario() {PageType = typeof(Setting), Icon="\uE115", Title="Setting"}
 		};
 	}
