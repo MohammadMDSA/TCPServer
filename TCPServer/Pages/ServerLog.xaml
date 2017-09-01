@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<RichEditBox PlaceholderText="xzcxzcxzcxczxc"/>
+		<RelativePanel>
+			<RichTextBlock x:Name="LogBlock" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Above="ClearButton"/>
+			<Button x:Name="ClearButton" Content="Clear" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="10,0,10,10" Click="ClearButton_Click"/>
+		</RelativePanel>
 	</Grid>
 </Page>

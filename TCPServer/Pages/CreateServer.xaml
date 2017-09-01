@@ -16,6 +16,9 @@
 			<Setter Property="Margin" Value="0,0,10,0"/>
 			<Setter Property="Padding" Value="0,0,0,0"/>
 		</Style>
+		<Style x:Key="FormButton" TargetType="Button">
+			<Setter Property="Margin" Value="10,10"/>
+		</Style>
 	</Page.Resources>
 	
 	<RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -31,6 +34,7 @@
 			<TextBlock x:Name="PortLabel" Style="{StaticResource FormLabel}" Text="Port:" Grid.Column="0" Grid.Row="0"/>
 			<TextBox x:Name="PortBox" Style="{StaticResource FormTextBox}" Grid.Column="1" Grid.Row="0" GotFocus="PortBox_GotFocus" LostFocus="PortBox_LostFocus"/>
 		</Grid>
-		<Button x:Name="SubmitButton" Content="Submit" RelativePanel.AlignBottomWithPanel="True"/>
+		<Button x:Name="SubmitButton" Style="{StaticResource FormButton}" Content="Submit" RelativePanel.AlignBottomWithPanel="True" Click="SubmitButton_Click"/>
+		<Button x:Name="ClearButton" Style="{StaticResource FormButton}" Content="Clear" RelativePanel.RightOf="SubmitButton" RelativePanel.Below="FormGrid" Click="ClearButton_Click"/>
 	</RelativePanel>
 </Page>
