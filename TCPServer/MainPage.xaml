@@ -19,7 +19,7 @@
 			<SplitView.Pane>
 				<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-						<ToggleButton x:Name="SidePanelTggle" Click="ToggleButton_Click" Width="{x:Bind SidePanel.CompactPaneLength}" Height="{x:Bind SidePanelTggle.Width}" Content="&#xE700;" FontFamily="Segoe MDL2 Assets" IsChecked="True"/>
+						<ToggleButton x:Name="SidePanelTggle" Click="ToggleButton_Click" Width="{x:Bind SidePanel.CompactPaneLength}" Height="{x:Bind SidePanelTggle.Width}" Content="&#xE700;" FontFamily="Segoe MDL2 Assets" IsChecked="False"/>
 						<TextBlock x:Name="AppTitle" VerticalAlignment="Center" FontWeight="SemiBold" Margin="20,0" Text="[APP_TITLE]"/>
 					</StackPanel>
 					<ListBox x:Name="ScenarioListBox" ScrollViewer.VerticalScrollMode="Disabled" SelectionChanged="ScenarioListBox_SelectionChanged">

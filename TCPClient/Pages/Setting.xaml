@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="TCPClient.Pages.Setting"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TCPClient.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Page.Resources>
+		<Style x:Key="FormButtons" TargetType="Button">
+			<Setter Property="Margin" Value="10,0,0,0"/>
+		</Style>
+		<Style x:Name="FormLable" TargetType="TextBlock">
+			<Setter Property="Margin" Value="0,0,0,0"/>
+		</Style>
+		<Style x:Name="FormBox" TargetType="TextBox">
+			<Setter Property="Margin" Value="0,0,10,10"/>
+		</Style>
+	</Page.Resources>
+
+	<RelativePanel Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+		<Grid x:Name="FormGrid" RelativePanel.AlignTopWithPanel="True" RelativePanel.Above="ConnectButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto"/>
+				<RowDefinition Height="auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<TextBlock x:Name="HostNameLable" Style="{StaticResource FormLable}" Text="Host Name:" Grid.Column="0" Grid.Row="0"/>
+			<TextBox x:Name="HostNameText" Style="{StaticResource FormBox}" PlaceholderText="Host name" Grid.Column="1" Grid.Row="0" LostFocus="HostNameText_LostFocus" GotFocus="HostNameText_GotFocus"/>
+			<TextBlock x:Name="PortNumberLable" Style="{StaticResource FormLable}" Text="Host Port Number:" Grid.Column="0" Grid.Row="1"/>
+			<TextBox x:Name="PortNumberBox" Style="{StaticResource FormBox}" PlaceholderText="Host port number" Grid.Row="1" Grid.Column="1" LostFocus="PortNumberBox_LostFocus" GotFocus="PortNumberBox_GotFocus"/>
+		</Grid>
+		<Button x:Name="ConnectButton" Style="{StaticResource FormButtons}" Content="Connect" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Click="ConnectButton_Click"/>
+		<Button x:Name="ResetButton" Style="{StaticResource FormButtons}" Content="Reset" RelativePanel.RightOf="ConnectButton" RelativePanel.AlignBottomWithPanel="True" Click="ResetButton_Click"/>
+	</RelativePanel>
+</Page>
