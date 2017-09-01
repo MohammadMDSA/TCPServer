@@ -60,6 +60,8 @@ namespace TCPServer.Pages
 
 		private async void SocketListener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
 		{
+			var clientName = args.Socket.Information.LocalAddress.DisplayName;
+			MainPage.RootPage.NotifyUser("Recieved a connection from " + clientName + ".", NotifyType.StatusMessage);
 			Stream inStream = args.Socket.InputStream.AsStreamForRead();
 			StreamReader reader = new StreamReader(inStream);
 			string request = await reader.ReadLineAsync();
