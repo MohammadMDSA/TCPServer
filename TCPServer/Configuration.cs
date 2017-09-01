@@ -14,6 +14,7 @@ namespace TCPServer
 
 		private List<Scenario> Scenarios = new List<Scenario>()
 		{
+			new Scenario() {PageType = typeof(ServerLog), Icon="\uE81E", Title="Server Log"},
 			new Scenario() {PageType = typeof(CreateServer), Icon = "\uEC7A", Title = "Create Server"}
 		};
 	}

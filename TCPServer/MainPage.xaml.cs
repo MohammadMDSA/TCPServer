@@ -29,6 +29,7 @@ namespace TCPServer
         {
             this.InitializeComponent();
 			RootPage = this;
+			ShowStatusBarAsync();
         }
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -36,7 +37,6 @@ namespace TCPServer
 			AppTitle.Text = APP_TITLE;
 			ScenarioListBox.ItemsSource = Scenarios;
 			ScenarioListBox.SelectedIndex = 0;
-			Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
 		}
 
 		private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -103,6 +103,18 @@ namespace TCPServer
 			if(s != null)
 			{
 				MainFrame.Navigate(s.PageType);
+			}
+		}
+
+		private async void ShowStatusBarAsync()
+		{
+			if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+			{
+				var statusbar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+				await statusbar.ShowAsync();
+				statusbar.BackgroundColor = Windows.UI.Colors.White;
+				statusbar.BackgroundOpacity = 1;
+				statusbar.ForegroundColor = Windows.UI.Colors.Black;
 			}
 		}
 	}
