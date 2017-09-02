@@ -47,16 +47,7 @@ namespace TCPClient.Pages
 				string request = InputBox.Text;
 				await writer.WriteLineAsync(request);
 				await writer.FlushAsync();
-			}
-			catch (Exception ex)
-			{
-				MainPage.RootPage.NotifyUser("Failed to send message", NotifyType.ErrorMessage);
-				MainPage.RootPage.NotifyUser(ex.Message, NotifyType.ErrorMessage);
-				return;
-			}
-
-			try
-			{
+			
 				Stream streamIn = socket.InputStream.AsStreamForRead();
 				StreamReader reader = new StreamReader(streamIn);
 				string response = await reader.ReadLineAsync();

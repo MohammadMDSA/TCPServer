@@ -50,6 +50,9 @@ namespace TCPServer.Pages
 
 				await socketlistener.BindServiceNameAsync(PortBox.Text);
 
+				var deviceName = socketlistener.Information.ToString();
+
+				MainPage.RootPage.NotifyUser("Server started successfully on port " + PortBox.Text + "." + deviceName, NotifyType.StatusMessage);
 				ServerLog.ServerLogClass.AddLog("Server started successfully on port " + PortBox.Text + ".", LogType.Status);
 			}
 			catch (Exception ex)
@@ -61,9 +64,9 @@ namespace TCPServer.Pages
 
 		private async void SocketListener_ConnectionReceived(StreamSocketListener sender, StreamSocketListenerConnectionReceivedEventArgs args)
 		{
-			CoreApplication.Exit();
 			var clientName = args.Socket.Information.LocalAddress.DisplayName;
 			MainPage.RootPage.NotifyUser("Recieved a connection from " + clientName + ".", NotifyType.StatusMessage);
+			ServerLog.ServerLogClass.AddLog("Recieved a connection from " + clientName + ".", LogType.Status);
 			Stream inStream = args.Socket.InputStream.AsStreamForRead();
 			StreamReader reader = new StreamReader(inStream);
 			string request = await reader.ReadLineAsync();
